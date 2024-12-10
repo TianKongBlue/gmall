@@ -1,0 +1,58 @@
+
+001,zhangsan,12,     lanqiu
+002,lisi,13,         pingpong
+003,wangwu,9,        zuqiu
+
+
+Group name: namespace
+  Commands: alter_namespace, create_namespace, describe_namespace, drop_namespace, list_namespace, list_namespace_tables
+  列出所有名称空间：list_namespace
+  创建名称空间：create_namespace 'myns'
+
+
+Group name: ddl
+  Commands: alter, alter_async, alter_status, create, describe, disable, disable_all, drop, drop_all, enable, enable_all, exists, get_table, is_disabled, is_enabled, list, locate_region, show_filters
+  建表：create
+    create 'stu','info','extra'
+    create 'myns:stus','info','extra'
+
+  查看表结构： describe 'stu'
+
+  禁用表：disable 'stu'
+  删除表：drop 'stu'
+  列出所有表：list
+
+
+Group name: dml
+  Commands: append, count, delete, deleteall, get, get_counter, get_splits, incr, put, scan, truncate, truncate_preserve
+  添加、修改: put
+    put 't1', 'r1', 'c1', 'value'
+
+    put 'stu','001','info:name','zhansan'
+    put 'stu','001','info:age','12'
+    put 'stu', '001','extra:hobby','lanqiu'
+
+    put 'stu','002','info:name','lisi'
+    put 'stu','002','info:age','13'
+    put 'stu','002','extra:hobby','pingpong'
+
+  根据行键查询  一行
+    get 'stu','001'
+  按条件查询  所有行
+    scan 'stu'
+  根据行键删除
+    deleteall 'stu','001'
+
+
+
+
+    SourceFrom
+    SinkTo(重点)
+    异步I/O
+
+
+    一个版本的方式创建：create 'student','score'
+    多版本的方式创建：create 'student', {NAME => 'score', VERSIONS => 5}
+
+
+ */
